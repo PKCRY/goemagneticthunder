@@ -3,10 +3,11 @@
 
 #can engine also be just map? do i need to create another class for it ?
 class Engine(object): 
+    #references the mapping to see the order
     def __init__(self, scene_map):
         self.scene_map = scene_map 
     
-    
+    #waht actually moves the user from scene to scene
     def play(self):
         current_scene = self.scene_map.opening_scene()
         last_scene = self.scene_map.next_scene('finished')
