@@ -408,7 +408,7 @@ class EscapeShip(Scene):
                     -----------------------------------------------------------------------------------------------------------------------------------------------------------
                     """))
 
-                self.options = ['move sheilds to the front', 'protecting the back']
+                self.options = ['move shields to the front', 'protecting the back']
                 option = self.choice()
 
                 if option == 'move shields to the front':
@@ -447,3 +447,5 @@ class MysteriousPlanet(Scene):
         Find out next time !!!!!!
         
         """))
+
+        exit(1)
