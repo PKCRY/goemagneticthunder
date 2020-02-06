@@ -1,11 +1,11 @@
 
 
 class Inventory(object):
-    def create_inventory(self):
-        self.current_inventory = {}
+    def current_inventory(self):
+        self.the_inventory = {}
 
     def add_item(self, item):
-        self.current_inventory.update()
+        self.the_inventory.update()
 
         
     def print_inventory(self):

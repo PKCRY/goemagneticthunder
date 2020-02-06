@@ -1,13 +1,27 @@
 from sys import exit
 from random import randint
 from textwrap import dedent
-import inventory
+import inventory 
 
 class Scene(object):
 
+    def __init__(self):
+        self.options = []
 
-    if action == 'inventory':
-        self.current_inventory = inventory.Inventory()
+    def choice(self):
+        while True:
+            action = input("> ")
+            
+            if action == 'inventory':
+                #self.inventory.Inventory = print_inventory
+                
+                action = self.choice
+            
+            if action in self.options:
+                return action
+            
+            else:
+                print("Not a valid input")
 
 
     def enter(self):
@@ -49,9 +63,11 @@ class Bunker(Scene):
 
         --------------------------------------------------------------------------------------------------------------------------------------
          """))
-        action = input("> ")
+        self.options = ['get up', 'sleep']
 
-        if action == "get up":
+        option = self.choice()
+
+        if option == 'get up':
             print(dedent("""
             You decide to get up from your makeshift cargo bed and navigate up the stairs to the hull and close the airlocked door behind you
 
@@ -59,7 +75,7 @@ class Bunker(Scene):
             """))
             return 'Hull'
         
-        elif action == 'sleep':
+        elif option == 'sleep':
             print(dedent(""" 
             You decide to nod off again. Ignoring the loudspeaker and want to catch a few more zzzzz's.
 
@@ -186,9 +202,11 @@ class TheBridge(Scene):
         ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
         """))
 
-        action = input("> ")
+        self.options = ['run', 'take cover']
+        option = self.choice()
+        
 
-        if action == 'run':
+        if option == 'run':
             print(dedent("""
             You run out into the corridor like an idiot and tackle the first guy you see knocking him to the ground. You wrestle him for a bit and punch 
             him in the face to discorient him and get immedietly shot in the head. Not even having a moment to think 
@@ -199,7 +217,7 @@ class TheBridge(Scene):
             """))
             return 'TheBridge'
 
-        elif action == 'take cover':
+        elif option == 'take cover':
             print(dedent("""
             You take cover behind one of the walls while Laxian fires at the enemy. You hear one AARRGGHH and a body hit the floor and Laxion motions for you to move forward with him. 
             "I'm an idiot I should have given you a  weapon of some sort. Here take this"
@@ -225,8 +243,8 @@ class TheBridge(Scene):
             ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             """))
             
-            self.current_inventory = inventory.Inventory()
-            self.current_inventory.add_item('Gun')
+            #self.current_inventory = inventory.Inventory()
+            #self.current_inventory.add_item('Gun')
 
             return 'Pod'
 
@@ -243,9 +261,10 @@ class Pod(Scene):
         -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         """))
 
-        action = input("> ")
+        self.options = ['shoot', 'alert']
+        option = self.choice()
 
-        if action == 'shoot':
+        if option == 'shoot':
             print(dedent("""
             You take a shot at the overseer member
             Miss
@@ -272,7 +291,7 @@ class Pod(Scene):
         
             return 'EscapeShip'
 
-        elif action == 'alert':
+        elif option == 'alert':
             print("captain gets shot in the arm")
             return 'Pod'
 
@@ -287,18 +306,20 @@ class EscapeShip(Scene):
 
         -------------------------------------------------------------------------------------------------------------------------------------------------------------------
         """))
-
-        action = input("> ")
+        
+        self.options = ['1', '2', '3']
+        option = self.choice()
+        
     
-        if action == '1':
+        if option == '1':
             print('work on this part')
             return 'EscapeShip'
 
-        elif action == '2':
+        elif option == '2':
             print("work on this part")
             return 'EscapeShip'
 
-        elif action == '3':
+        elif option == '3':
             print(dedent("""
             Seeing that the 3rd planet is closest and seems to have both water and trees due to the colonization efforts that mankind has been pushing for the next few years.
             You set your sights and start to figure out how to get there. 
@@ -312,9 +333,11 @@ class EscapeShip(Scene):
             --------------------------------------------------------------------------------------------------------------------------------------------------------------------
             """))
 
-            action = input("> ")
+            self.options = ['right', 'left']
+            option = self.choice()
+            
 
-            if action == 'right':
+            if option == 'right':
             #work on this one for later
                 print("""
                 you start veering towards the right which seems like a dangerous plan but the ships start to pull away and go back to the left side where the Overseer attack ship is. They seem to be
@@ -341,9 +364,10 @@ class EscapeShip(Scene):
                     -----------------------------------------------------------------------------------------------------------------------------------------------------------
                     """))
 
-                action = input("> ")
+                self.options = ['move sheilds to the front', 'protecting the back']
+                option = self.choice()
 
-                if action == 'move shields to the front':
+                if option == 'move shields to the front':
                     print(dedent("""
                     you move the shields to the fornt of the ship and veer to the right to narrowly avoid a third shot from the attack ship and entry begins. You have just enough sheilds to protect
                     you on entry through the mysterious planets atmosphere. 
@@ -359,14 +383,14 @@ class EscapeShip(Scene):
                     return 'MysteriousPlanet'
 
 
-                elif action == 'left':
-                    print(dedent("""
-                        What was once clear is now full of enemy ships pulling back to the overseer attack ship and when they spot your ship they shoot it down instantly and you die in the firey explosion
+            elif option == 'left':
+                print(dedent("""
+                    What was once clear is now full of enemy ships pulling back to the overseer attack ship and when they spot your ship they shoot it down instantly and you die in the firey explosion
 
-                        -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-                        """))
+                    -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                    """))
 
-                    return 'EscapeShip'
+                return 'EscapeShip'
 
 
 
